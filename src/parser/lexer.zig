@@ -156,7 +156,7 @@ test "lexer.tokenize_simple_query" {
     const alloc = gpa.allocator();
 
     const query = "SELECT * FROM users";
-    std.debug.print("\n=== Testing SQL Query: '{s}' ===\n", .{query});
+    std.debug.print("\n=== Test 1 lexer.zig: '{s}' ===\n", .{query});
 
     const toks = try tokenize(alloc, query);
     defer alloc.free(toks);
@@ -174,7 +174,7 @@ test "lexer.tokenize_simple_query" {
     try std.testing.expectEqual(utils.TokenType.IDENTIFIER, toks[3].type);
     try std.testing.expectEqual(utils.TokenType.EOF, toks[4].type);
 
-    std.debug.print("=== Test passed! ===\n\n", .{});
+    std.debug.print("=== Test passed ===\n\n", .{});
 }
 
 test "lexer.tokenize_complex_query" {
@@ -183,7 +183,7 @@ test "lexer.tokenize_complex_query" {
     const alloc = gpa.allocator();
 
     const query = "SELECT name, age FROM users WHERE age > 18 AND active = true";
-    std.debug.print("\n=== Testing Complex SQL Query: '{s}' ===\n", .{query});
+    std.debug.print("\n=== Test 2 lexer.zig: '{s}' ===\n", .{query});
 
     const toks = try tokenize(alloc, query);
     defer alloc.free(toks);
@@ -201,5 +201,5 @@ test "lexer.tokenize_complex_query" {
     try std.testing.expectEqual(utils.TokenType.WHERE, toks[6].type);
     try std.testing.expectEqual(utils.TokenType.AND, toks[10].type);
 
-    std.debug.print("=== Complex query test passed! ===\n\n", .{});
+    std.debug.print("=== Test passed ===\n\n", .{});
 }
