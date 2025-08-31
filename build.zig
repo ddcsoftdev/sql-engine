@@ -1,24 +1,17 @@
 const std = @import("std");
 
-const app_name = "sql-engine";
-const version = "1.0.0";
-
 pub fn build(b: *std.Build) void {
-    const optimize = b.standardOptimizeOption(.{});
-    const target = b.standardTargetOptions(.{});
-
     const exe = b.addExecutable(.{
-        .name = app_name,
-        .root_source_file = b.path("src/main.zig"),
-        .optimize = optimize,
-        .target = target,
+        .name = "hello",
+        .root_module = b.createModule(.{
+            .root_source_file = b.path("src/main.zig"),
+            .target = b.graph.host,
+        }),
     });
+
     b.installArtifact(exe);
 
-    // Add run command
+    // Add a run step
     const run_cmd = b.addRunArtifact(exe);
-    run_cmd.step.dependOn(b.getInstallStep());
-
-    const run_step = b.step("run", "Run the app");
-    run_step.dependOn(&run_cmd.step);
+    b.step("run", "Run the hello program").dependOn(&run_cmd.step);
 }
