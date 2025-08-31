@@ -105,9 +105,9 @@ pub const Lexer = struct {
 
         while (self.index < self.buffer.len) {
             const c = self.peek();
-            if (self.isEndOfFile(c)) break;
+            if (self.isEndOfQuery(c)) break;
 
-            if (!self.isWhitespace(c)) {
+            if (self.isWhitespace(c)) {
                 _ = self.next();
                 continue;
             }
@@ -171,8 +171,8 @@ pub const Lexer = struct {
     };
 }
 
-    pub fn isEndOfFile(c: u8) bool {
-        return c == 0;
+    pub fn isEndOfQuery(c: u8) bool {
+        return c == 0 or c == ';';
     }
 
     pub fn getToken(self: *Self, c: u8) ?*Token{
@@ -206,7 +206,5 @@ pub const Lexer = struct {
 
 //NOTE: Tests for lexer below
 pub fn tester() void {
-    const key = Keyword;
-    _ = key;
-    key.base.start;
+    
 }
