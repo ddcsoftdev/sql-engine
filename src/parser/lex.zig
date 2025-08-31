@@ -6,13 +6,15 @@ const SupportedCodePage = code_pages.SupportedCodePage;
 const SourceMappings = @import("source_mapping.zig").SourceMappings;
 const isNonAsciiDigit = @import("utils.zig").isNonAsciiDigit;
 
+const LexIdEnums = @import("enums.zig");
+
 pub const Token = struct {
-    id: Id,
+    id: LexIdEnums.TokenId,
     start: usize,
     end: usize,
     line_number: usize,
 
-    pub const Id = enum { LITERAL, KEYWORD, IDENTIFIER };
+    
 
 
     pub fn slice(self: Token, buffer: []const u8) []const u8{
@@ -22,37 +24,20 @@ pub const Token = struct {
 
 pub const Keyword = struct {
     base: Token,
-    key_id: KeyId,
+    key_id: LexIdEnums.KeywordId,
 
-    pub const KeyId = enum {
-        ALIAS,
-        ALTER,
-        ALL,
-        AND,
-        ANY,
-        AS,
-        ASC,
-        AVG,
+};
 
-        BETWEEN,
-        BEGIN,
-        BIND,
-        BIT,
-        BOTH,
-        BY,
+pub const Identifier = struct {
+    base: Token,
+    identif_id: LexIdEnums.IdentifierId,
 
-        CASE,
-        CHAR,
-        CHARACTER,
-        CHECK,
-        CLOSE,
-        COALESCE,
-        COLEFTCH,
-        COMMIT,
-        CONNECT,
-        COUNT,
+};
 
-    };
+pub const Literal = struct {
+    base: Token,
+    literal_id: LexIdEnums.LiteralId,
+
 };
 
 
