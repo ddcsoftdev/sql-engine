@@ -306,3 +306,41 @@ pub const LiteralId = enum {
         };
     }
 };
+
+pub const DelimiterId = enum {
+    COMMA,
+    OPEN_PAREN,
+    CLOSE_PAREN,
+    LESS_THAN,
+    GREATER_THAN,
+    DOT,
+    COLON,
+    EQUALS,
+    STAR,
+    PLUS,
+    MINUS,
+    SLASH,
+    NOT_EQUAL,
+    LESS_EQUAL_THAN,
+    GREATER_EQUAL_THAN,
+
+    pub fn nameForErrorDisplay(self: DelimiterId) []const u8 {
+        return switch (self) {
+            .COMMA => ",",
+            .OPEN_PAREN => "(",
+            .CLOSE_PAREN => ")",
+            .LESS_THAN => "<",
+            .GREATER_THAN => ">",
+            .DOT => ".",
+            .COLON => ":",
+            .EQUALS => "=",
+            .STAR => "*",
+            .PLUS => "+",
+            .MINUS => "-",
+            .SLASH => "/",
+            .NOT_EQUAL => "<>",
+            .LESS_EQUAL_THAN => "<=",
+            .GREATER_EQUAL_THAN => ">=",
+        };
+    }
+};
