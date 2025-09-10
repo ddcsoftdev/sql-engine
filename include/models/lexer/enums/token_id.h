@@ -1,10 +1,12 @@
-namespace models {
-namespace lexer {
+#pragma once
+
+namespace models::lexer::enumsxer {
 
 enum class TokenId {
     Literal,
     Keyword,
     Identifier,
+    Delimiter,
     EndOfFile
 }
 
@@ -17,11 +19,12 @@ toString(TokenId id) {
         return "<keyword>";
     case TokenId::Identifier:
         return "<identifier>";
+    case TokenId::Delimiter:
+        return "<delimiter>";
     case TokenId::EndOfFile:
         return "<eof>";
     }
-    return "<unknown>"
+    return "<unknown>";
 }
 
-} // namespace lexer
-} // namespace models
+} // namespace models::lexer::enumsxer

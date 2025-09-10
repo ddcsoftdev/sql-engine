@@ -1,5 +1,6 @@
-namespace models {
-namespace lexer {
+#pragma once
+
+namespace models::lexer::enums {
 
 enum class KeywordId {
     Alias,
@@ -366,5 +367,4 @@ toString(KeywordId id) {
     return "UNKOWN";
 }
 
-} // namespace lexer
-} // namespace models
+} // namespace models::lexer::enums
