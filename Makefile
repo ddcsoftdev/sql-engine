@@ -1,18 +1,9 @@
-.PHONY: build run test clean lint
+.PHONY: run format
 
+run:
+	@mkdir -p bin
+	@g++ src/main.cpp -o bin/sql-engine
+	@./bin/sql-engine
 
-build:
-	zig build
-
-run: build
-	zig build run
-
-test:
-	@echo "Running tests..."
-	@find src -name "*.zig" -exec zig test {} \;
-
-clean:
-	rm -rf zig-out .zig-cache
-
-lint: 
-	@zig fmt .
+format:
+	@find . -name "*.cpp" -o -name "*.h" | xargs clang-format -i

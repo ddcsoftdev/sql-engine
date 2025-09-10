@@ -33,3 +33,7 @@ go.work.sum
 
 zig-out/
 .zig-cache/
+
+bin
+
+old
