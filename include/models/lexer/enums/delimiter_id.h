@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace models::lexer::enums {
 
 enum class DelimiterId {
@@ -41,11 +43,10 @@ enum class DelimiterId {
     Space,
     Tab,
     Newline,
-    CarriageReturn,
-}
+    CarriageReturn
+};
 
-inline std::string
-toString(DelimiterId id) {
+inline std::string toString(DelimiterId id) {
     switch (id) {
     case DelimiterId::LeftParen:
         return "(";

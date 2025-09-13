@@ -1,17 +1,12 @@
 #pragma once
 
-namespace models::lexer::enumsxer {
+#include <string>
 
-enum class TokenId {
-    Literal,
-    Keyword,
-    Identifier,
-    Delimiter,
-    EndOfFile
-}
+namespace models::lexer::enums {
 
-inline std::string
-toString(TokenId id) {
+enum class TokenId { Literal, Keyword, Identifier, Delimiter, EndOfFile };
+
+inline std::string toString(TokenId id) {
     switch (id) {
     case TokenId::Literal:
         return "<literal>";
@@ -27,4 +22,4 @@ toString(TokenId id) {
     return "<unknown>";
 }
 
-} // namespace models::lexer::enumsxer
+} // namespace models::lexer::enums

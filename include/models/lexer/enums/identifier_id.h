@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace models::lexer::enums {
 
 enum class IdentifierId {
@@ -10,11 +12,10 @@ enum class IdentifierId {
     ViewName,
     StatementName,
     RangeVariable,
-    ProcedureName,
-}
+    ProcedureName
+};
 
-inline std::string
-toString(IdentifierId id) {
+inline std::string toString(IdentifierId id) {
     switch (id) {
     case IdentifierId::AuthorizationId:
         return "AUTHORIZATION_ID";

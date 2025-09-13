@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace models::lexer::enums {
 
 enum class KeywordId {
@@ -133,11 +135,10 @@ enum class KeywordId {
     Unique,
     UserTypeName,
     Using,
-    Update,
-}
+    Update
+};
 
-inline std::string
-toString(KeywordId id) {
+inline std::string toString(KeywordId id) {
     switch (id) {
     case KeywordId::Alias:
         return "ALIAS";
@@ -364,7 +365,7 @@ toString(KeywordId id) {
     case KeywordId::Update:
         return "UPDATE";
     }
-    return "UNKOWN";
+    return "UNKNOWN";
 }
 
 } // namespace models::lexer::enums

@@ -1,12 +1,17 @@
 #pragma once
 
+#include "enums/keyword_id.h"
+#include "enums/token_id.h"
+#include "token.h"
+#include <cstdint>
+
 namespace models::lexer {
 
-struct Keword: public Token{
-    enums::KewwordId keyId;
+struct Keyword : public Token {
+    enums::KeywordId keyId;
 
-    KeywordToken(enums::KewwordId keyId, uint16_t start, uint16_t end, uint16_t lineNumber)
-        : Token(enums::TokenId::Keyword, start, end, line), keyId(keyId) {}
+    Keyword(enums::KeywordId keyId, uint16_t start, uint16_t end, uint16_t lineNumber)
+        : Token(enums::TokenId::Keyword, start, end, lineNumber), keyId(keyId) {}
 };
 
 } // namespace models::lexer
