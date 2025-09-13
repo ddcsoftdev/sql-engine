@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+#include <optional>
 
 namespace models::lexer::enums {
 
@@ -366,6 +368,130 @@ inline std::string toString(KeywordId id) {
         return "UPDATE";
     }
     return "UNKNOWN";
+}
+
+
+inline std::optional<KeywordId> fromString(const std::string& str) {
+    static const std::unordered_map<std::string, KeywordId> stringToKeyword = {
+        {"ALIAS", KeywordId::Alias},
+        {"ALTER", KeywordId::Alter},
+        {"ALL", KeywordId::All},
+        {"AND", KeywordId::And},
+        {"ANY", KeywordId::Any},
+        {"AS", KeywordId::As},
+        {"ASC", KeywordId::Asc},
+        {"AVG", KeywordId::Avg},
+        {"BETWEEN", KeywordId::Between},
+        {"BEGIN", KeywordId::Begin},
+        {"BIND", KeywordId::Bind},
+        {"BIT", KeywordId::Bit},
+        {"BOTH", KeywordId::Both},
+        {"BY", KeywordId::By},
+        {"CASE", KeywordId::Case},
+        {"CHAR", KeywordId::Char},
+        {"CHARACTER", KeywordId::Character},
+        {"CHECK", KeywordId::Check},
+        {"CLOSE", KeywordId::Close},
+        {"COALESCE", KeywordId::Coalesce},
+        {"COLEFTCH", KeywordId::Coleftch},
+        {"COMMIT", KeywordId::Commit},
+        {"CONNECT", KeywordId::Connect},
+        {"COUNT", KeywordId::Count},
+        {"CREATE", KeywordId::Create},
+        {"CURRENT", KeywordId::Current},
+        {"DATABASE", KeywordId::Database},
+        {"DATE", KeywordId::Date},
+        {"DATETIME", KeywordId::Datetime},
+        {"DEC", KeywordId::Dec},
+        {"DECIMAL", KeywordId::Decimal},
+        {"DECLARE", KeywordId::Declare},
+        {"DELETE", KeywordId::Delete},
+        {"DESC", KeywordId::Desc},
+        {"DISTINCT", KeywordId::Distinct},
+        {"DOUBLE", KeywordId::Double},
+        {"DROP", KeywordId::Drop},
+        {"ELSE", KeywordId::Else},
+        {"END", KeywordId::End},
+        {"ESCAPE", KeywordId::Escape},
+        {"EXCEPT", KeywordId::Except},
+        {"EXECUTE", KeywordId::Execute},
+        {"EXISTS", KeywordId::Exists},
+        {"FETCH", KeywordId::Fetch},
+        {"FILE", KeywordId::File},
+        {"FLOAT", KeywordId::Float},
+        {"FOR", KeywordId::For},
+        {"FROM", KeywordId::From},
+        {"GRAPHIC", KeywordId::Graphic},
+        {"GROUP", KeywordId::Group},
+        {"HAVING", KeywordId::Having},
+        {"IMAGE", KeywordId::Image},
+        {"IN", KeywordId::In},
+        {"INNER", KeywordId::Inner},
+        {"INSERT", KeywordId::Insert},
+        {"INT", KeywordId::Int},
+        {"INTEGER", KeywordId::Integer},
+        {"INTERSECT", KeywordId::Intersect},
+        {"INTO", KeywordId::Into},
+        {"IS", KeywordId::Is},
+        {"JOIN", KeywordId::Join},
+        {"KEY", KeywordId::Key},
+        {"LEADING", KeywordId::Leading},
+        {"LEFT", KeywordId::Left},
+        {"LIKE", KeywordId::Like},
+        {"LOGICAL", KeywordId::Logical},
+        {"LONG", KeywordId::Long},
+        {"MAX", KeywordId::Max},
+        {"MIN", KeywordId::Min},
+        {"MONEY", KeywordId::Money},
+        {"NOT", KeywordId::Not},
+        {"NULL", KeywordId::Null},
+        {"NULLIF", KeywordId::Nullif},
+        {"NUMBER", KeywordId::Number},
+        {"NUMERIC", KeywordId::Numeric},
+        {"OF", KeywordId::Of},
+        {"OFF", KeywordId::Off},
+        {"OPEN", KeywordId::Open},
+        {"ON", KeywordId::On},
+        {"ONLY", KeywordId::Only},
+        {"OPTION", KeywordId::Option},
+        {"OR", KeywordId::Or},
+        {"ORDER", KeywordId::Order},
+        {"OUTER", KeywordId::Outer},
+        {"PRECISION", KeywordId::Precision},
+        {"PRIMARY", KeywordId::Primary},
+        {"RAW", KeywordId::Raw},
+        {"REAL", KeywordId::Real},
+        {"REFERENCE", KeywordId::Reference},
+        {"RIGHT", KeywordId::Right},
+        {"ROLLBACK", KeywordId::Rollback},
+        {"SELECT", KeywordId::Select},
+        {"SERIAL", KeywordId::Serial},
+        {"SET", KeywordId::Set},
+        {"SMALLFLOAT", KeywordId::Smallfloat},
+        {"SMALLINT", KeywordId::Smallint},
+        {"SOME", KeywordId::Some},
+        {"SQLID", KeywordId::Sqlid},
+        {"SUM", KeywordId::Sum},
+        {"SYSNAME", KeywordId::Sysname},
+        {"TABLE", KeywordId::Table},
+        {"TEXT", KeywordId::Text},
+        {"TIME", KeywordId::Time},
+        {"TIMESTAMP", KeywordId::Timestamp},
+        {"TIMEZONE", KeywordId::Timezone},
+        {"TO", KeywordId::To},
+        {"USER", KeywordId::User},
+        {"UNION", KeywordId::Union},
+        {"UNIQUE", KeywordId::Unique},
+        {"USER_TYPE_NAME", KeywordId::UserTypeName},
+        {"USING", KeywordId::Using},
+        {"UPDATE", KeywordId::Update}
+    };
+    
+    auto it = stringToKeyword.find(str);
+    if (it != stringToKeyword.end()) {
+        return it->second;
+    }
+    return std::nullopt;
 }
 
 } // namespace models::lexer::enums

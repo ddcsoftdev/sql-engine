@@ -1,6 +1,8 @@
 #pragma once
 
 #include <string>
+#include <unordered_map>
+#include <optional>
 
 namespace models::lexer::enums {
 
@@ -128,6 +130,48 @@ inline std::string toString(DelimiterId id) {
         return "\r";
     }
     return "<unknown>";
+}
+
+inline std::optional<DelimiterId> fromChar(char c) {
+    static const std::unordered_map<char, DelimiterId> charToDelimiter = {
+        {'(', DelimiterId::LeftParen},
+        {')', DelimiterId::RightParen},
+        {'[', DelimiterId::LeftBracket},
+        {']', DelimiterId::RightBracket},
+        {'{', DelimiterId::LeftBrace},
+        {'}', DelimiterId::RightBrace},
+        {',', DelimiterId::Comma},
+        {';', DelimiterId::Semicolon},
+        {'.', DelimiterId::Period},
+        {':', DelimiterId::Colon},
+        {'*', DelimiterId::Asterisk},
+        {'+', DelimiterId::Plus},
+        {'-', DelimiterId::Minus},
+        {'/', DelimiterId::Slash},
+        {'%', DelimiterId::Percent},
+        {'=', DelimiterId::Equal},
+        {'<', DelimiterId::LessThan},
+        {'>', DelimiterId::GreaterThan},
+        {'&', DelimiterId::Ampersand},
+        {'|', DelimiterId::VerticalBar},
+        {'!', DelimiterId::Exclamation},
+        {'~', DelimiterId::Tilde},
+        {'^', DelimiterId::Caret},
+        {'?', DelimiterId::QuestionMark},
+        {'@', DelimiterId::At},
+        {'#', DelimiterId::Hash},
+        {'$', DelimiterId::Dollar},
+        {'\\', DelimiterId::Backslash},
+        {'\'', DelimiterId::Quote},
+        {'"', DelimiterId::DoubleQuote},
+        {'`', DelimiterId::Backtick}
+    };
+    
+    auto it = charToDelimiter.find(c);
+    if (it != charToDelimiter.end()) {
+        return it->second;
+    }
+    return std::nullopt;
 }
 
 } // namespace models::lexer::enums
